@@ -6,7 +6,7 @@ public class TeamMumber {
 
 
 
-    private String Name;
+     String Name;
 
     private BigDecimal Balance;
 

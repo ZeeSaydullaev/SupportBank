@@ -3,14 +3,16 @@ package training.supportbank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Account {
+ class Transactions {
 
-    private LocalDate date;
+    String accountHolder;
 
-    private String narrative;
+    LocalDate date;
 
-    private BigDecimal sent;
+    String reason;
 
-    private BigDecimal received;
+    String to;
+
+    BigDecimal amountSent;
 
 }

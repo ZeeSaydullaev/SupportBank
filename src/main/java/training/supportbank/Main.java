@@ -2,20 +2,46 @@ package training.supportbank;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String args[]) throws FileNotFoundException {
-/*
-        List<String> lines = Files.readAllLines(Paths.get("Transactions2014"));
+    public static void main(String args[]) throws IOException {
 
-        System.out.println(lines);
-        for (int i = 0; i< lines.size(); i++) {
-            lines.get(i).split(",");
+        List<String> lines = Files.readAllLines(Paths.get("Transactions2014.csv"));
+
+        ArrayList<String> names = new ArrayList<>();
+
+        ArrayList<Transactions> transactions = new ArrayList<>();
+
+        for (int i = 1; i < lines.size(); i++) {
+            String[] data = lines.get(i).split(",");
+            names.add(data[1]);
+
+
+
+            System.out.println(data[0]);
+            System.out.println(data[1]);
+            System.out.println(data[2]);
+            System.out.println(data[3]);
+            System.out.println(data[4]);
         }
-*/
+        System.out.println(names);
+
+        System.out.println(transactions);
+
+
+
+
+
+
+
+/*
 
         ArrayList<String[]> names = new ArrayList<>();
 
@@ -46,6 +72,8 @@ public class Main {
 
 
     }
+*/
 
 
+    }
 }
