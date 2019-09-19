@@ -5,12 +5,12 @@ import java.time.LocalDate;
 
 public class Account {
 
-    public LocalDate date;
+    private LocalDate date;
 
-    public String narrative;
+    private String narrative;
 
-    public BigDecimal sent;
+    private BigDecimal sent;
 
-    public BigDecimal received;
+    private BigDecimal received;
 
 }

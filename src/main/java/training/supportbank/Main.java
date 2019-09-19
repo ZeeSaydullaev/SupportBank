@@ -2,11 +2,8 @@ package training.supportbank;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -20,6 +17,7 @@ public class Main {
         }
 */
 
+        ArrayList<String[]> names = new ArrayList<>();
 
 
 
@@ -36,15 +34,17 @@ public class Main {
         while(inputStream.hasNext()){
             String data = inputStream.nextLine();
             String[] values = data.split(",");
-            System.out.println(values[0]);
+            names.add(values);
+            //System.out.println(values[1]);
 
         }
         inputStream.close();
+        System.out.println(Arrays.toString(names.toArray()));
 
 
 
 
-        System.out.println("Test!");
+
     }
 
 
