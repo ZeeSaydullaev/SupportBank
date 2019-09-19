@@ -3,8 +3,10 @@ package training.supportbank;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,26 +17,60 @@ public class Main {
 
         List<String> lines = Files.readAllLines(Paths.get("Transactions2014.csv"));
 
-        ArrayList<String> names = new ArrayList<>();
 
-        ArrayList<Transactions> transactions = new ArrayList<>();
+        ArrayList<Transaction> transactions = new ArrayList<>();
 
         for (int i = 1; i < lines.size(); i++) {
             String[] data = lines.get(i).split(",");
-            names.add(data[1]);
-
-
-
-            System.out.println(data[0]);
-            System.out.println(data[1]);
-            System.out.println(data[2]);
-            System.out.println(data[3]);
-            System.out.println(data[4]);
+            //transactions.add(new Transaction(names));
+            Transaction transaction = new Transaction();
+            transaction.accountHolder = data[1];
+            transaction.amountSent = new BigDecimal(data[4]);
+            //transaction.date = new LocalDate(data[0]);
+            transaction.reason = data[3];
+            transaction.to = data[2];
+            transactions.add(transaction);
         }
-        System.out.println(names);
 
-        System.out.println(transactions);
+       // System.out.println(transactions.get(0).accountHolder);
 
+        ArrayList<TeamMumber> members = new ArrayList<>();
+
+        for (int i = 0; i < transactions.size(); i++) {
+
+            TeamMumber member = new TeamMumber();
+            //if ()
+            member.Name = transactions.get(0).accountHolder;
+            members.add(member);
+
+            //System.out.println(transactions.get(i).accountHolder);
+
+
+
+
+        }
+        System.out.println(members);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       // System.out.println(names);
+
+       // System.out.println();
 
 
 

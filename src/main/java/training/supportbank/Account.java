@@ -3,7 +3,7 @@ package training.supportbank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
- class Transactions {
+ class Transaction {
 
     String accountHolder;
 
@@ -14,5 +14,7 @@ import java.time.LocalDate;
     String to;
 
     BigDecimal amountSent;
+
+
 
 }

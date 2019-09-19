@@ -8,6 +8,6 @@ public class TeamMumber {
 
      String Name;
 
-    private BigDecimal Balance;
+    private BigDecimal Balance ;
 
 }
