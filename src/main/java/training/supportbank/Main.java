@@ -5,14 +5,49 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
+
+    public static void main(String[] args) throws IOException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        List<String> lines = Files.readAllLines(Paths.get("Transactions2014.csv"));
+
+
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        for (int i = 1; i < lines.size(); i++) {
+            String[] data = lines.get(i).split(",");
+            Transaction transaction = new Transaction();
+            transaction.accountHolder = data[1];
+            transaction.amountSent = new BigDecimal(data[4]);
+            transaction.date = LocalDate.parse(data[0], dateTimeFormatter);
+            transaction.reason = data[3];
+            transaction.to = data[2];
+            transactions.add(transaction);
+        }
+
+
+        ArrayList<TeamMember> members = new ArrayList<>();
+
+        for (int i = 0; i < transactions.size(); i++) {
+            if (checkIfAccountHolderExists(transactions.get(i).accountHolder, members)) {
+                TeamMember member = new TeamMember();
+                member.Name = transactions.get(i).accountHolder;
+                members.add(member);
+            }
+        }
+    }
+
+
     private static boolean checkIfAccountHolderExists(String accountHolder, ArrayList<TeamMember> members) {
 
-        for(int i = 0; i < members.size(); i++) {
+        for (int i = 0; i < members.size(); i++) {
             if (accountHolder.equals(members.get(i).Name)) {
                 return false;
             }
@@ -20,36 +55,24 @@ public class Main {
         return true;
     }
 
-    public static void main(String[] args) throws IOException {
-
-        List<String> lines = Files.readAllLines(Paths.get("Transactions2014.csv"));
 
 
-        ArrayList<Transaction> transactions = new ArrayList<>();
 
-        for (int i = 1; i < lines.size(); i++) {
-            String[] data = lines.get(i).split(",");
-            //transactions.add(new Transaction(names));
-            Transaction transaction = new Transaction();
-            transaction.accountHolder = data[1];
-            transaction.amountSent = new BigDecimal(data[4]);
-            //transaction.date = new LocalDate.(data[0]);
-            transaction.reason = data[3];
-            transaction.to = data[2];
-            transactions.add(transaction);
-        }
 
-       // System.out.println(transactions.get(0).accountHolder);
 
-        ArrayList<TeamMember> members = new ArrayList<>();
 
-        for (int i = 0; i < transactions.size(); i++) {
-                if (checkIfAccountHolderExists(transactions.get(i).accountHolder, members)) {
-                    TeamMember member = new TeamMember();
-                    member.Name = transactions.get(i).accountHolder;
-                    members.add(member);
-                }
-            }
+
+
+
+
+
+
+}
+
+
+
+
+
 
 
 
@@ -76,10 +99,7 @@ public class Main {
 
 
 
-            }
 
-
-}
 
 /*            Set<String> set = new HashSet<>(member.);
 //            members.clear();
@@ -95,28 +115,9 @@ public class Main {
 
 
 
-//  System.out.println(members);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       // System.out.println(names);
-
-       // System.out.println();
+//          System.out.println(members);*/
+//          System.out.println(names);
+//          System.out.println();
 
 
 
