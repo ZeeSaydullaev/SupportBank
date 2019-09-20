@@ -1,19 +1,26 @@
 package training.supportbank;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
-    public static void main(String args[]) throws IOException {
+
+    private static boolean checkIfAccountHolderExists(String accountHolder, ArrayList<TeamMember> members) {
+
+        for(int i = 0; i < members.size(); i++) {
+            if (accountHolder.equals(members.get(i).Name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) throws IOException {
 
         List<String> lines = Files.readAllLines(Paths.get("Transactions2014.csv"));
 
@@ -26,7 +33,7 @@ public class Main {
             Transaction transaction = new Transaction();
             transaction.accountHolder = data[1];
             transaction.amountSent = new BigDecimal(data[4]);
-            //transaction.date = new LocalDate(data[0]);
+            //transaction.date = new LocalDate.(data[0]);
             transaction.reason = data[3];
             transaction.to = data[2];
             transactions.add(transaction);
@@ -34,22 +41,61 @@ public class Main {
 
        // System.out.println(transactions.get(0).accountHolder);
 
-        ArrayList<TeamMumber> members = new ArrayList<>();
+        ArrayList<TeamMember> members = new ArrayList<>();
 
         for (int i = 0; i < transactions.size(); i++) {
+                if (checkIfAccountHolderExists(transactions.get(i).accountHolder, members)) {
+                    TeamMember member = new TeamMember();
+                    member.Name = transactions.get(i).accountHolder;
+                    members.add(member);
+                }
+            }
 
-            TeamMumber member = new TeamMumber();
-            //if ()
-            member.Name = transactions.get(0).accountHolder;
-            members.add(member);
 
+
+//        System.out.println(members);
+
+//            ArrayList<TeamMember> membersWithNoDuplicats = new ArrayList<>();
+//
+//
+//
+//            for(int i = 0; i < members.size(); i++){
+//                }
+//
+//
+//            }
+
+
+   //     for(int member.get(1).name : )
+
+
+
+
+
+
+
+
+
+            }
+
+
+}
+
+/*            Set<String> set = new HashSet<>(member.);
+//            members.clear();
+//            members.addAll(set);
+
+//            for (TeamMember teamMember : members) {
+//                if (teamMember.Name == member.Name) {
+//                    System.out.println(member.Name);
+//                }
+//            }
             //System.out.println(transactions.get(i).accountHolder);
 
 
 
 
-        }
-        System.out.println(members);
+//  System.out.println(members);*/
 
 
 
@@ -103,13 +149,11 @@ public class Main {
         inputStream.close();
         System.out.println(Arrays.toString(names.toArray()));
 
+}
 
 
 
 
-    }
 */
 
 
-    }
-}
