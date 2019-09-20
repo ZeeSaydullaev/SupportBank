@@ -47,10 +47,15 @@ public class Main {
         
         
         for (int i = 0; i < transactions.size();i++) {
-            updateBalance(transactions.get(i).accountHolder,transactions.get(i).amountSent,members);
+            updateBalanceSent(transactions.get(i).accountHolder,transactions.get(i).amountSent,members);
+        }
+    
+        for (int i = 0; i < transactions.size();i++) {
+            updateBalanceRecieved(transactions.get(i).to,transactions.get(i).amountSent,transactions,members);
         }
     
         System.out.println(members);
+        
 
 
 
@@ -71,19 +76,44 @@ public class Main {
     }
     
     
-    private  static void updateBalance(String name, BigDecimal amountSent, ArrayList<TeamMember> members ) {
-        
-        for (int i = 0; i < members.size(); i++){
-            if(name.equals(members.get(i).Name)){
+    
+    private  static void updateBalanceSent(String name, BigDecimal amountSent, ArrayList<TeamMember> members ) {
+    
+        for (int i = 0; i < members.size(); i++) {
+            if (name.equals(members.get(i).Name)) {
                 members.get(i).Balance = members.get(i).Balance.subtract(amountSent);
             }
         }
     }
     
     
+    
+    private  static void updateBalanceRecieved(String name, BigDecimal amountRecieved, ArrayList<Transaction> transactions, ArrayList<TeamMember> members ) {
+        
+        for (int i = 0; i < members.size(); i++) {
+            if (name.equals(transactions.get(i).to)) {
+                members.get(i).Balance = members.get(i).Balance.add(amountRecieved);
+            }
+        }
+    }
+    
+    
+        
+        
+        
+        
+//        for(int i = 0; i <members.size(); i++){
+//            name.equals(transaction.get(i).to)
+//        }
+//
+        
+        
+    }
+    
+    
 
 
-}
+
 
 
 
