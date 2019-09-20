@@ -36,16 +36,31 @@ public class Main {
         ArrayList<TeamMember> members = new ArrayList<>();
 
         for (int i = 0; i < transactions.size(); i++) {
-            if (checkIfAccountHolderExists(transactions.get(i).accountHolder, members)) {
+            if (checkIfAccountHolderDoesntExists(transactions.get(i).accountHolder, members)) {
                 TeamMember member = new TeamMember();
                 member.Name = transactions.get(i).accountHolder;
                 members.add(member);
             }
         }
+        
+        
+        
+        
+        for (int i = 0; i < transactions.size();i++) {
+            updateBalance(transactions.get(i).accountHolder,transactions.get(i).amountSent,members);
+        }
+    
+        System.out.println(members);
+
+
+
+
+
+
     }
 
 
-    private static boolean checkIfAccountHolderExists(String accountHolder, ArrayList<TeamMember> members) {
+    private static boolean checkIfAccountHolderDoesntExists(String accountHolder, ArrayList<TeamMember> members) {
 
         for (int i = 0; i < members.size(); i++) {
             if (accountHolder.equals(members.get(i).Name)) {
@@ -54,17 +69,18 @@ public class Main {
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+    private  static void updateBalance(String name, BigDecimal amountSent, ArrayList<TeamMember> members ) {
+        
+        for (int i = 0; i < members.size(); i++){
+            if(name.equals(members.get(i).Name)){
+                members.get(i).Balance = members.get(i).Balance.subtract(amountSent);
+            }
+        }
+    }
+    
+    
 
 
 }

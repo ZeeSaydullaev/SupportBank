@@ -7,6 +7,6 @@ public class TeamMember {
 
 
     String Name;
-    BigDecimal Balance ;
+    BigDecimal Balance = new BigDecimal(0);
 
 }
